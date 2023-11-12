@@ -1,1 +1,132 @@
+# CLASS 1
+    Create a folder mern
+        under mern create a folder backend
+            CMD under backend install following packages 
+                npm i -g nodemon
+                npm i express --save
+                npm i body-parser --save
+                npm i cookie-parser --save
+                npm i multer --save
+                npm i cors
+            
+            Note: 
+            --save can be removed. 
+            Express is a framework of nodejs, make work easy to write API. 
+            BodyParser - frontend to backend data we have to send in the form of json, it will help us to pack & unpack data.
+            multer - It will help us to upload the file.
+
+        come back to mern foler and open cmd
+            npx create-react-app frontend
+    A folder mern --> /frontend && /backend 
+
+    Google search mongoDB - goto the official website mongodb.com
+        go to community server which is inside product section
+            in community server you will come down check to download
+                version = 7.0.0 (current) | Platform = Windows x64 | Package = msi
+                    It will be little heavy file.
+        After downloading, you have to install it.
+        Setup happen in one day, biggest achievent, all versions are different othrewise this problem that problem.
+    
+    Go to VS code, goto open folder and load the mern folder, open the mern folder.
+        We will go the backend folder, in the backend will create a file "page1.js"
+            This file is just for testing purpose, wheather it is going to work or not.
+                come to page1.js file and write:
+                    let http = require("http");
+                    http.createServer( function(req, res){
+                        res.write("<h1> Welcome To Node </h1>");
+                    });
+
+                Note:
+                http is the name of a module, it is going to help us ceate a server and communicate to frontend and backend.
+                req , res are variable names for request and response               
+                Now this file become a server. We've used a function here createServer, so this complete file become a server.
+                Wheverever we call it, this file will give "Welcome TO Node".
+                But on which port number it will run ? http.createServer.listen(1111);
+
+                let http = require("http");
+                    http.createServer( function(req, res){
+                        res.write("<h1> Welcome To Node </h1>");
+                    }).listen(1111); // on which port no it will run.
+
+                    Let's give some port no 1111, any 4 digit you can write, so this server will run like this:
+                    //http://localhost:1111
+                    So, after starting this file if you run this url, then your server will run and display this page. 
+                    
+                    Now, we need to compile this file, then it will display something in the browser.
+                    So, goto the cmd of backend folder, in the backend folder open the cmd:
+                        Also you can write here, in the above file we can also write, console.log("server is live")
+                        Once we compile this file then it will show in console, the server is live.
+
+                        let http = require("http");
+                        
+                        http.createServer( function(req, res){
+                            
+                            console.log("server is live");
+
+                            res.write("<h1> Welcome To Node </h1>");
+
+                    }).listen(1111);
+
+                    In cmd we can write here now, not node directly, nodemon:
+                        nodemon page1.js
+                        Is it showing here green color? Once you call this api then it will say server is live now.
+                        Open this url in the browser now, http://localhost:1111. "Showing Welcome to node"!
+                        It should show you "welcome to Node" when you open the url and it should show here(cmd) server is live. 
+                        
+                        (observation: browser window is displaying the message but contineously loading)
+
+                        So, client has send the request to server, server sends link response.write()
+                        Now your client is waiting... waiting...? client is waiting for what purpose? Some more data.
+                        client is waiting for some more data.
+                        So, in the server we have to write response.end means that's all this much only for you.   
+
+                        let http = require("http");
+                        
+                        http.createServer( function(req, res){
+                            
+                            console.log("server is live");
+
+                            res.write("<h1> Welcome To Node </h1>");
+                            res.end(); // then only the response will get end.
+
+                        }).listen(1111);
+
+                        // http://localhost:1111
+
+                        Now you can see the browser will get reloaded. Browser loading is stopped.
+                        
+                    Write <h2> and refresh your browser.
+
+                        http.createServer( function(req, res){
+                            
+                            console.log("server is live");
+
+                            res.write("<h1> Welcome To Node </h1>");
+                            res.write("<h1> Welcome back </h1>");
+
+                            res.end(); // then only the response will get end.
+
+                        }).listen(1111);
+
+
+                        So, wehnever you are modifying any code, can you see in the cmd this live server is refreshing automaticaaly, that is because of nodemon.
+                        If we write only node then we have to recompile again and again.
+                        Nodemon - It will keep checking if any modification will happen in the file, automatically compilation will happen.
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+
+
+
 
