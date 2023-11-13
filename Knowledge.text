@@ -286,7 +286,33 @@
     fronted -> CMD -> npm i react-router-dom
     NodeFile to React Data display. Homework to create mern practice folder, send api and display data.
 
-    
+# CLASS 4
+    Recape 
+    Nested array related work
+    page5 one more api that will have multiple type of records.
+    we create an API /mydata that contains alldata object which has 3 arrays.
+    check in browser backend data.
+    will display the data in home.js frontend file.
+    Now we will go to fileread and filewrite. 
+        Sending message from fronted to backend and backend to fronted.
+        create message.txt in backend folder.
+        come to page5.js import module fs.
+        we need to display each line in one line.
+        change usestate("") -> array usestate([]) and split the message data.
+        message is stored in text format file, from there node is reading and sending to the fronted, 
+        frontend receives in text format and converts in array, array is assigned to state and prints it.
+    Next we need to post message 
+        we will create a variable and post that to the backend.
+        if the backend send data in text format e.g.
+            res.send("Message Deleted Successfully !");
+        the frontend should accept in the text fromat e.g.
+            .then((response) => response.text())
+
+# CLASS 5
+    File reading and writing.
+    fs.readFile("message.txt", function (error, data) {res.send(data)})
+    fs.appendFile("message.txt", msg + "#", function (error) { res.send("received") })
+    app.get("/clearall", function (req, res) {res.send("deleted") })
 
 
 
