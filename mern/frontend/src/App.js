@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { HashRouter, Routes, Route, Link } from "react-router-dom";
+import Mybook from "./book";
+import Myhome from "./home";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HashRouter>
+      <section className="bg-light p-3">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-3">
+              <h2> MERN Stack </h2>
+            </div>
+            <div className="col-lg-9 text-end">
+              <Link to="/" className="me-4">
+                Home
+              </Link>
+              <Link to="/book" className="me-4">
+                Books
+              </Link>
+              <Link to="/fileread" className="me-4">
+                File Read
+              </Link>
+              <Link to="/filewrite" className="me-4">
+                File Write
+              </Link>
+              <Link to="/nestedarray" className="me-4">
+                Nested Array
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+      <Routes>
+        <Route exact path="/" element={<Myhome />} />
+        <Route exact path="/book" element={<Mybook />} />
+        <Route exact path="/fileread" element={<Myhome />} />
+        <Route exact path="/filewrite" element={<Myhome />} />
+        <Route exact path="/nestedarray" element={<Myhome />} />
+      </Routes>
+    </HashRouter>
   );
 }
 

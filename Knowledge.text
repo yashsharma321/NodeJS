@@ -269,7 +269,24 @@
             app.listen(2222); function callback to make sure server is running we can write here, the server is live.
 
 
-         
+# CLASS 3
+    Run page5 = Server is running
+    and goto cmd frontend and do npm start
+        Our server is running, there we have 2 APIs allbook and booklist
+        This data has to go to the react frontend
+        goto frontend/src and create a file book.js
+        fetch api from backend and display the booklist in the frontend using map function.
+    Under frontend folder in CMD install npm i bootstrap
+        goto index.js file & import "bootstrap/dist/css/bootstrap.css";
+        apply css in book.js
+    Write the next function to call another API.
+    Created tabular representation of data received from backend as array of objects in json format.
+    In react create one more component home.js
+    Now, will create router, on click of home, home page will render, on books click book page will come.
+    fronted -> CMD -> npm i react-router-dom
+    NodeFile to React Data display. Homework to create mern practice folder, send api and display data.
+
+    
 
 
 
