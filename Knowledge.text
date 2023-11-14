@@ -315,23 +315,358 @@
     app.get("/clearall", function (req, res) {res.send("deleted") })
 
 
+# CLASS 1
+    Create a folder mern
+        under mern create a folder backend
+            CMD under backend install following packages 
+                npm i -g nodemon
+                npm i express --save
+                npm i body-parser --save
+                npm i cookie-parser --save
+                npm i multer --save
+                npm i cors
+            
+            Note: 
+            --save can be removed. 
+            Express is a framework of nodejs, make work easy to write API. 
+            BodyParser - frontend to backend data we have to send in the form of json, it will help us to pack & unpack data.
+            multer - It will help us to upload the file.
+
+        come back to mern foler and open cmd
+            npx create-react-app frontend
+    A folder mern --> /frontend && /backend 
+
+    Google search mongoDB - goto the official website mongodb.com
+        go to community server which is inside product section
+            in community server you will come down check to download
+                version = 7.0.0 (current) | Platform = Windows x64 | Package = msi
+                    It will be little heavy file.
+        After downloading, you have to install it.
+        Setup happen in one day, biggest achievent, all versions are different othrewise this problem that problem.
+    
+    Go to VS code, goto open folder and load the mern folder, open the mern folder.
+        We will go the backend folder, in the backend will create a file "page1.js"
+            This file is just for testing purpose, wheather it is going to work or not.
+                come to page1.js file and write:
+                    let http = require("http");
+                    http.createServer( function(req, res){
+                        res.write("<h1> Welcome To Node </h1>");
+                    });
+
+                Note:
+                http is the name of a module, it is going to help us ceate a server and communicate to frontend and backend.
+                req , res are variable names for request and response               
+                Now this file become a server. We've used a function here createServer, so this complete file become a server.
+                Wheverever we call it, this file will give "Welcome TO Node".
+                But on which port number it will run ? http.createServer.listen(1111);
+
+                let http = require("http");
+                    http.createServer( function(req, res){
+                        res.write("<h1> Welcome To Node </h1>");
+                    }).listen(1111); // on which port no it will run.
+
+                    Let's give some port no 1111, any 4 digit you can write, so this server will run like this:
+                    //http://localhost:1111
+                    So, after starting this file if you run this url, then your server will run and display this page. 
+                    
+                    Now, we need to compile this file, then it will display something in the browser.
+                    So, goto the cmd of backend folder, in the backend folder open the cmd:
+                        Also you can write here, in the above file we can also write, console.log("server is live")
+                        Once we compile this file then it will show in console, the server is live.
+
+                        let http = require("http");
+                        
+                        http.createServer( function(req, res){
+                            
+                            console.log("server is live");
+
+                            res.write("<h1> Welcome To Node </h1>");
+
+                    }).listen(1111);
+
+                    In cmd we can write here now, not node directly, nodemon:
+                        nodemon page1.js
+                        Is it showing here green color? Once you call this api then it will say server is live now.
+                        Open this url in the browser now, http://localhost:1111. "Showing Welcome to node"!
+                        It should show you "welcome to Node" when you open the url and it should show here(cmd) server is live. 
+                        
+                        (observation: browser window is displaying the message but contineously loading)
+
+                        So, client has send the request to server, server sends link response.write()
+                        Now your client is waiting... waiting...? client is waiting for what purpose? Some more data.
+                        client is waiting for some more data.
+                        So, in the server we have to write response.end means that's all this much only for you.   
+
+                        let http = require("http");
+                        
+                        http.createServer( function(req, res){
+                            
+                            console.log("server is live");
+
+                            res.write("<h1> Welcome To Node </h1>");
+                            res.end(); // then only the response will get end.
+
+                        }).listen(1111);
+
+                        // http://localhost:1111
+
+                        Now you can see the browser will get reloaded. Browser loading is stopped.
+                        
+                    Write <h2> and refresh your browser.
+
+                        http.createServer( function(req, res){
+                            
+                            console.log("server is live");
+
+                            res.write("<h1> Welcome To Node </h1>");
+                            res.write("<h1> Welcome back </h1>");
+
+                            res.end(); // then only the response will get end.
+
+                        }).listen(1111);
 
 
+                        So, wehnever you are modifying any code, can you see in the cmd this live server is refreshing automaticaaly, that is because of nodemon.
+                        If we write only node then we have to recompile again and again.
+                        Nodemon - It will keep checking if any modification will happen in the file, automatically compilation will happen.
 
 
+# CLASS 2
+    In mern folder open cmd --> code . = mern folder will load in vs code
+    we were under backend, we have created a file page1.js, we have run this file with the help of nodemon.
+    Let us run this file again. page1.js file available?
+    In the backend folder open the cmd = cd backend = nodemon page1 [enter]
+
+    You have run it compile it now open this url(http://localhost:1111) in the browser.
+    It will show us the result that you written in current file. "Welcome to Node", "Welcome Back"
+    
+    So, what was the flow of this file? The flow was:
+        The nodejs have lot of modules, based on module it is going to make your work easy. So, for e.g.
+        the network call, like server communication, client to server communication, we have a module called "http", 
+        now we call the module "http" and under the http module we have a function called "ceateServer", 
+        with the help of "ceateServer", we created a server and based on callback function two parameters we created 
+        the frst one is called "request" and the second one called "response", 
+        the client from the frontend side whichever the input will come, it will come to this request variable and 
+        from backend whatever output will go to the client that will go via the response variable.
+
+        Below you can see we have written response.write("<h1>") means when we run this url when we call this url what it will give return <h1> 
+        and second line also it will give return <h1>.
 
 
+        and what is the meaning of this line res.end()? The meaning of the this line is... let me connemnt it.  
+        You can see the compilation will happen automatically, 
+        Now if I refresh the page we can see output will print but it will keep reloading. Correct?
+
+        Why it is waitig.. waiting.. waiting, because from client request went to the server, server has given some resonse, and server has not given the... 
+        any kind of option where saying like this much only for you, your entitire response is finsihed. Now the client is waiting for some more response. (x2)
+        So, for that purpose what we need to do? We need to terminate the response with the help of this function called res.end().
+        res.end represents whoever the client will call this particular url, they will get output this much and finally the last third line will say 
+        your response is finished there is no any further response for you. Line will understand that yes my data is finished 
+        I've to finish the loading and display the message to user.
+        It is here (uncomment) coming?
+         
+    Create the next file where we will play with little - single dimention array, multi dimention array, array inside array, and many more.
+    page2.js create.
+    It is setup for everyone? Project part is setup? 
+
+    Now come inside, again import the:
+        let http = require("http");
+        http.createServer().listen(1111); 
+        //inside that listen we have to mention the port no, as we have wriiten in the previous file. let's keep the same port no. here also, 4 digit no.
+        So server will be ready, as well as it will get run on port no 1111, write inside again: fxn, inside the fxn 2 parameters.
+
+        http.createServer( function(req, res){
+
+            res.writeHead(200, {"Content-Type" : "text/html"});
+            
+            // writeHead fxn will inform to the user that what type of information is going to come from the server. It has 2 parameters (200, Content-Type) 
+            // whenever any request will come to this particular server then this server will start executing, server will take the request,
+            and after taking the request immediately it will send the respond to the client with the response code 200, 200 represent success
+            200 is a reserved word which represent a success, client will come to know that server has received my request.
+            and server is processing my request, then how the client will come to know? with the help of 200 code.
+            Next, again the client will get another input saying like the server is going to send me the data, that data will be of text as well as html.
+        
+        }).listen(1111);
+
+        
+        let http = require("http");
+
+        http.createServer(function (req, res) {
+            res.writeHead(200, { "Content-Type": "text/html" });
+            res.write("<h1> Book List  </h1>");
+
+            let booklist = ["html", "css", "react", "javascript", "node", "php"];
+            res.write(booklist);
+
+            res.end();
+        }).listen(1111);
 
 
+        Content-Type : text/tml, server will say first Yes, I've received your request, I am processing it but I am going to send you data in the from of test/html.
+        Client will be ready to handle html html/data. 
+        
+        Server will not give the response directly, server will give the response but before giving the response, server will inform the Client.
+        "I am processing your request and I am going to send the data in the form of text/html".
+
+        We have added array data as a fixed value, we have informing the client that the data will be send in html form but here we have array, 
+        Client will get confused. client will say we said html now sending array how will I handle? So specify what type of data you going to send.
+
+        Again we will go to cmd, terminate that loop, ctrl+c, cls to clear => nodemon page2
+
+        Next file create page3.js, In page3.js take the copy of previous file. 
+        In page3 we will not send the response in the form of html, we will send the response in the form of json.
+        write text/json. Again stop cmd and we need to compile page3.
+        We will refresh the browser and check. Not printing? Because we have made some mistake.
+        We have informed here json and we are sending without json.
+
+        We are informing client that yes I have received your req and will send you data in json but we are sending array. 
+        so we need to convert it into json. JSON.stringify(booklist);
+        The booklist we have to convert from array to json then this json data we need to send to the client.
+        Now the cient will capture the json data and again client will have to convert json to array. Then client can run map fxn and display the data.
+
+        Page4.js fill will be array of object. 
+        This is in the form of array of objects, you cannot send to the fronted in this format, because backend is running somewhere else and
+        frontend is running somewhere else. So from the fronted to backend via internet data will get tranfer, So when the data will get tranfer from
+        one location to other location directly array data is not allowed. It must has be in the form of JSON or XML.
+        We have to convert this array of objects to JSON. Client will capture JSON and again convert it to array to display inside the page.
+        res.write(booklist); // will give error 
+        So what we have to do again?
+        let jsondata = JSON.stringify(booklist);
+        Then the json data we can pass here.
+        See now difference, how it pass in normal object, name, price, author are whithout double quotes.
+        Here name, price, author are in double quotes, here it was in form of objects but when we converted into JSON, entire property changed
+        without double quotes to double quotes, that is the property of JSON. If the value is string it will be under quotes, numbers will not be.
+
+        Now craete another file, page5.js
+        So in these all examples/files what we saw is, everytime we are stopping a server and running one server.
+        Like suppose we have a single dimentional array ad a multi dimentional array, if we want to run both the server then what we have to do? 
+        Two servers has to run no? One CMD is running for page4. Okay, Let's goto page3 and change the port no 1122 port number.
+        Now, how many servers are running? two servers. If we want read data from both the source then we have to run two servers.  
+        Page3 will run on 1122 and page4 will run on 1111. Assume in your project there are 20 pages then what we have to do? 
+        how many servers we have to start ? 20 ? 20 CMD? If one CMD will stop then, particular page will not work, particular service will be done.
+
+        As of now the code you have written, it is the nodejs code only but you understand the complexity. For 4 pages to run 4 CMD, 4 port numbers. 
+        Now we will try to make the work little easy, We will create one file, and in that file all 4 functions will act. 
+
+        We will try to merge all the 4 API in one file, and that file will have only one port no, in one port no only all 4 file will come, 
+        url will be different but port no will be same.
+
+        Create next file, page5.js
+
+        We are going to involve experess - express is a framework of nodejs, where code will less and output will be more.
+
+            const express = require("express"); //calling express framework
+            const app = express(); // creating object of express
+            const cors = require("cors"); // calling cors origin library
+            app.use(cors()); // creating object of cors library
+            app.use(express.json()); //injecting .json to send and receive data in json format
+
+            As of now cors we have not installed, we have to install now.
+
+            Okay, let us see so no. 1 line it is imorting another package "express", 
+            and after importing it is creating an object of that particular express. 
+
+            Again, it is importing one more package called "cors". what is the use of cors is 
+            You can develop the project based on frontend and backend, your backend will be in the server and frontend will be in the user computer,
+            From fronted request will go to server, okay? Then the server need to understand whether this request is authorized request or unauthorized request. Who? server.
+            Request will go from client to server so server need to understand wheather this request is authorized or unauthorized.  
+            So, this "cors" package it is called as a cross policy when we comuunicate from one location to other location, the second location person should trust then only
+            they can receive the data, they can give the data. So this package is for that purpose.
+            It is going to make your backend trustable, saying like when the req comes from frontend you must have to give the data, backend will refuse to give the data,
+            backend will not give the data directly to the fronted, so this "cros package" is going to enable the cros origin policy and saying like when the request come from
+            the fronted we will not block the request, we will allow the request.
+
+            Since from backend to fronted data will go in JSON so express.json() we dont have to write stringify always.
+            It will automaticaaly convert to whichever data comes from fronted to JSON before sending to the backend.
+
+            First we have to install cors, cmd => backend folder => npm i cors
+            
+            So, now we got a file page5.js, inside we can write N no of API urls and port will be only one and it will communicate from fronted.
+
+            app.listen(2222); function callback to make sure server is running we can write here, the server is live.
 
 
+# CLASS 3
+    Run page5 = Server is running
+    and goto cmd frontend and do npm start
+        Our server is running, there we have 2 APIs allbook and booklist
+        This data has to go to the react frontend
+        goto frontend/src and create a file book.js
+        fetch api from backend and display the booklist in the frontend using map function.
+    Under frontend folder in CMD install npm i bootstrap
+        goto index.js file & import "bootstrap/dist/css/bootstrap.css";
+        apply css in book.js
+    Write the next function to call another API.
+    Created tabular representation of data received from backend as array of objects in json format.
+    In react create one more component home.js
+    Now, will create router, on click of home, home page will render, on books click book page will come.
+    fronted -> CMD -> npm i react-router-dom
+    NodeFile to React Data display. Homework to create mern practice folder, send api and display data.
 
+# CLASS 4
+    Recape 
+    Nested array related work
+    page5 one more api that will have multiple type of records.
+    we create an API /mydata that contains alldata object which has 3 arrays.
+    check in browser backend data.
+    will display the data in home.js frontend file.
+    Now we will go to fileread and filewrite. 
+        Sending message from fronted to backend and backend to fronted.
+        create message.txt in backend folder.
+        come to page5.js import module fs.
+        we need to display each line in one line.
+        change usestate("") -> array usestate([]) and split the message data.
+        message is stored in text format file, from there node is reading and sending to the fronted, 
+        frontend receives in text format and converts in array, array is assigned to state and prints it.
+    Next we need to post message 
+        we will create a variable and post that to the backend.
+        if the backend send data in text format e.g.
+            res.send("Message Deleted Successfully !");
+        the frontend should accept in the text fromat e.g.
+            .then((response) => response.text())
 
+# CLASS 5
+    File reading and writing.
+    fs.readFile("message.txt", function (error, data) {res.send(data)})
+    fs.appendFile("message.txt", msg + "#", function (error) { res.send("received") })
+    app.get("/clearall", function (req, res) {res.send("deleted") })
 
+# CLASS 6
+    So, file management we have completed. Now We will work on MongoDB.
+    How we can, create database in mongoDB, store, fetch, link with the react.
+    MongoDB Community Server Download : https://www.mongodb.com/try/download/community
+    Search Mongodb compass, click on connect.
+    create database, database name = company & collection name (table name) = emp
+    insert data and add these data :
+        {
+          "empname": "Ganesh",
+          "mobile": 898989898,
+          "dept": "HR",
+          "salary": 89000,
+          "age": 23,
+          "edu": "MCA"
+        }
+        insert such multiple data, try upload, cloan, bulk upload options.
+    Create a new folder restapi under mern folder. In restapi folder open CMD:
+        npm i -g nodemon
+        npm i express
+        npm i body-parser
+        npm i cookie-parser
+        npm i multer
+        npm i cors
+        npm i mongoose
 
-                
+    under restapi folder create a file server1.js
+        const express = require("express");
+        const app = express();
 
+        const mongoose = require("mongoose");
+        mongoose.connect("mongodb://127.0.0.1:27017/company", {
+            useNewUrlParser: true,
+        });
+        const db = mongoose.connection; // to connect with database
 
-
-
-
+        db.on("error", (error) => console.log(error));
+        db.on("open", () => console.log("Database is connected..."));
+    
+    nodemon server1
