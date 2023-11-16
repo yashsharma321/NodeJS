@@ -670,3 +670,57 @@
         db.on("open", () => console.log("Database is connected..."));
     
     nodemon server1
+
+# CLASS 7
+    copy from page5.js and paste in server1.js
+        const cors = require("cors"); // calling cors origin library
+        app.use(cors()); // creating object of cors library
+        app.use(express.json()); //injecting .json to send and receive data in json format
+    Next step will be we have to create a schema.
+    Goto monodb compass delete both the tables, complete databsed will get deleted.
+    We will create the table from restapi folder, create a file called empschema.js
+    Now once the table structure is ready we have link it with server.js file.
+    Then we can write the API and do GET, POST from the API.
+    Next step is, we need to create a file that file will help us to write API.
+    Create next file empapi.js. Steps to remember:
+        1. server1 - connected server 
+        2. empschema - created table structure
+        3. empapi - stablish api connection
+            const express = require("express");
+            const router = express.Router();
+            module.exports = router;
+            const Employee = require("./empschema");
+            To test:
+                router.get("/", (req, res) => {
+                  let allemp = ["Ganesh", "Mahesh", "Suresh"];
+                  res.status(200).json(allemp);
+                });
+                We will open http://localhost:5555/emplist on browser to test. 
+
+            empapi will be responsible to get the data from react and pass it to schema.
+            Again, empapi will be responsible for to get the request from frontend, fetch it from schema, and give to fronted.
+    With the help of test.rest we can test the api.
+        router.post("/", async (req, res) => {
+          let newemp = new Employee({
+            empname: "Ganesh",
+            dept: "IT",
+            city: "Bangalore",
+            salary: "150000",
+          });
+          let empinfo = await newemp.save(); 
+          res.status(201).json(empinfo); // complete details with employee id we will reply to the frontend as status.
+        }); // After saving the record it will generate the employee id dynamically. 
+        -> The above data will be given bu user, it will come from the fronted. We are making ready the backend part. If these is happening then 
+        dynamic data will come, dynamic data will go.
+        -> Next, we have to test wheather the save api we have created is going to work or not. So for testing purpose we have to install the rest client. 
+        Rest API you are creating, this REST API will be tested by rest client. rest client will send a request to this api and 
+        then will sending the request our rest api should be ready to capture send the data. Let us install the rest API.
+        -> Let's go to your VS code, extention -> Search REST Client and install it.
+        After that in restapi folder create a file "test.rest".
+         Assume that u're a backend developer and created an api, how will you make sure that your api will work.
+         You have no idea of the fronted. Then how you can give api to frontend, how you can claim that this api will work.
+         You have to test it first. How to test? => "REST client"
+         With the help of rest client we can test the API, send, update, delete, if everything is working then 
+         that JSON body and url will give to the fronted. 
+         "Whenver you are sending data, you send this one and you will receive this one."
+         http://localhost:5555/emplist this url on the browser will show the output.

@@ -1,0 +1,33 @@
+
+###
+GET http://localhost:5555/emplist
+
+
+###
+POST http://localhost:5555/emplist
+Content-Type: application/json
+
+{
+	"empname" : "Mahesh",
+	"dept" : "HR",
+	"city" : "Pune",
+	"salary": "10000"
+}
+
+
+###
+DELETE http://localhost:5555/emplist/655450a9574f90e995519461
+
+
+
+###
+PATCH http://localhost:5555/emplist
+Content-Type: application/json
+
+{
+	"empname" : "Ganesh",
+	"dept" : "HR",
+	"city" : "Darjeeling",
+	"salary": "99000",
+	"id" : "6555bbda28b1a8ea17b2eb1d"
+}
