@@ -27,3 +27,13 @@ router.post("/", async (req, res) => {
     res.status(500).json({ error: "Failed to add new user" });
   }
 });
+
+router.put("/", async (req, res) => {
+  try {
+    let input = { email: req.body.email, password: req.body.password };
+    const allregisters = await Register.find(input);
+    res.status(200).json(allregisters);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to retrieve registered user data" });
+  }
+});
