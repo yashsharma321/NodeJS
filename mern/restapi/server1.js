@@ -20,4 +20,8 @@ app.use("/emplist", employee); // http://localhost:5555/emplist get post patch d
 const product = require("./productapi");
 app.use("/productlist", product); // http://localhost:5555/productlist get post patch delete
 
+// linking with registerapi
+const register = require("./registerapi");
+app.use("/account", register); // http://localhost:5555/account get post patch delete
+
 app.listen(5555, () => console.log("Server has started..."));
