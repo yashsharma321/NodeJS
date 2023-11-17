@@ -3,6 +3,8 @@ import Mybook from "./book";
 import Myhome from "./home";
 import Mymessage from "./message";
 import Myemp from "./emp";
+import Myproduct from "./product";
+import NewProduct from "./newproduct";
 
 function App() {
   return (
@@ -26,8 +28,8 @@ function App() {
               <Link to="/emp" className="me-4">
                 Employee
               </Link>
-              <Link to="/nestedarray" className="me-4">
-                Nested Array
+              <Link to="/product" className="me-4">
+                Product
               </Link>
             </div>
           </div>
@@ -38,7 +40,8 @@ function App() {
         <Route exact path="/book" element={<Mybook />} />
         <Route exact path="/message" element={<Mymessage />} />
         <Route exact path="/emp" element={<Myemp />} />
-        <Route exact path="/nestedarray" element={<Myhome />} />
+        <Route exact path="/product" element={<Myproduct />} />
+        <Route exact path="/newproduct" element={<NewProduct />} />
       </Routes>
     </HashRouter>
   );

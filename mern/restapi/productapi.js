@@ -5,45 +5,66 @@ module.exports = router;
 const Product = require("./productschema");
 
 router.get("/", async (req, res) => {
-  let allproduct = await Product.find();
-  res.send(201).json(allproduct);
+  try {
+    let allproduct = await Product.find();
+    res.status(200).json(allproduct); // Respond with the retrieved data
+  } catch (error) {
+    res.status(500).json({ error: "Failed to retrieve product data" });
+  }
 });
 
 router.post("/", async (req, res) => {
-  let newproduct = new Product({
-    pname: req.body.pname,
-    price: req.body.price,
-    qty: req.body.qty,
-    photo: req.body.photo,
-  });
+  try {
+    let newproduct = new Product({
+      pname: req.body.pname,
+      price: req.body.price,
+      qty: req.body.qty,
+      photo: req.body.photo,
+    });
 
-  let productinfo = await newproduct.save();
-  res.send(201).json(productinfo);
+    let productinfo = await newproduct.save();
+    res.status(201).json(productinfo);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to add new product" });
+  }
 });
 
 router.patch("/", async (req, res) => {
-  let productdetails = await Product.findById(req.body.id);
-  if (req.body.pname != "") {
-    // to check if pname is comming from frontend
-    productdetails.pname = req.body.pname;
+  try {
+    const productdetails = await Product.findById(req.body.id);
+    if (!productdetails) {
+      return res.send(404).json({ error: "Product not found" });
+    }
+    if (req.body.pname) {
+      productdetails.pname = req.body.pname;
+    }
+    if (req.body.price) {
+      productdetails.price = req.body.price;
+    }
+    if (req.body.qty) {
+      productdetails.qty = req.body.qty;
+    }
+    if (req.body.photo) {
+      productdetails.photo = req.body.photo;
+    }
+    await productdetails.save();
+    res.status(200).json(productdetails);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update record" });
   }
-  if (req.body.price != "") {
-    productdetails.price = req.body.price;
-  }
-  if (req.body.qty != "") {
-    productdetails.qty = req.body.qty;
-  }
-  if (req.body.photo != "") {
-    productdetails.photo = req.body.photo;
-  }
-
-  productdetails.save();
-  res.status(201).json(productdetails);
 });
 
 router.delete("/:id", async (req, res) => {
-  let myproduct = await Product.findById(req.params.id);
-  myproduct.deleteOne();
-  let msg = { info: "Record Deleted Successfully !" };
-  res.status(201).json(msg);
+  try {
+    let myproduct = await Product.findById(req.params.id);
+    if (myproduct) {
+      await myproduct.deleteOne(); // Wait for the deletion to complete
+      let msg = { info: "Record Deleted Successfully !" };
+      return res.status(200).json(msg);
+    } else {
+      return res.status(404).json({ error: "Product not found" });
+    }
+  } catch (err) {
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
 });

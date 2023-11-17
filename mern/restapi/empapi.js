@@ -8,8 +8,12 @@ const Employee = require("./empschema");
 
 // to fetch all employee
 router.get("/", async (req, res) => {
-  let allemp = await Employee.find(); //fetch all data from employee table
-  res.status(201).json(allemp); // 201 - response with data
+  try {
+    const allemp = await Employee.find(); // Fetch all data from the employee table
+    res.status(200).json(allemp); // Respond with the retrieved data
+  } catch (error) {
+    res.status(500).json({ error: "Failed to retrieve employee data" });
+  }
 });
 
 // to add new employee
@@ -69,7 +73,7 @@ router.delete("/:id", async (req, res) => {
     if (myemp) {
       await myemp.deleteOne(); // Wait for the deletion to complete
       let msg = { info: "Record Deleted Successfully !" };
-      return res.status(201).json(msg);
+      return res.status(200).json(msg);
     } else {
       // If the employee doesn't exist, return an error message
       return res.status(404).json({ error: "Employee not found" });
