@@ -738,3 +738,7 @@
     newproduct.js = to new create a new product
     App.js <Route exact path="/newproduct" element={<NewProduct />} />
     following files to be there in frontend's public folder : 1.jpg, 2.jpg, 3.jpg
+
+    
+#CLASS 10
+    Pagination and search functionality added. 

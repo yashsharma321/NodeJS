@@ -13,6 +13,15 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:pname", async (req, res) => {
+  try {
+    let allproduct = await Product.find({pname : req.params.pname});
+    res.status(200).json(allproduct); // Respond with the retrieved data
+  } catch (error) {
+    res.status(500).json({ error: "Failed to retrieve product data" });
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     let newproduct = new Product({
