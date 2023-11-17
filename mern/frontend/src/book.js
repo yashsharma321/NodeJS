@@ -3,9 +3,7 @@ import React, { useEffect, useState } from "react";
 const Mybook = () => {
   let [booklist, updateBook] = useState([]);
   const getBook = () => {
-    fetch(
-      "https://zany-space-chainsaw-5rgjvqqxpgqc47v-1234.app.github.dev/booklist"
-    )
+    fetch("http://localhost:1234/booklist")
       .then((response) => response.json())
       .then((bookArray) => {
         updateBook(bookArray);
@@ -14,9 +12,7 @@ const Mybook = () => {
 
   let [allbook, setBook] = useState([]);
   const getMyBook = () => {
-    fetch(
-      "https://zany-space-chainsaw-5rgjvqqxpgqc47v-1234.app.github.dev/allbook"
-    )
+    fetch("http://localhost:1234/allbook")
       .then((response) => response.json())
       .then((bookArray) => {
         setBook(bookArray);

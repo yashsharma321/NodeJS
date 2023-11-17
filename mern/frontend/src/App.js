@@ -2,6 +2,7 @@ import { HashRouter, Routes, Route, Link } from "react-router-dom";
 import Mybook from "./book";
 import Myhome from "./home";
 import Mymessage from "./message";
+import Myemp from "./emp";
 
 function App() {
   return (
@@ -22,8 +23,8 @@ function App() {
               <Link to="/message" className="me-4">
                 File Read
               </Link>
-              <Link to="/filewrite" className="me-4">
-                File Write
+              <Link to="/emp" className="me-4">
+                Employee
               </Link>
               <Link to="/nestedarray" className="me-4">
                 Nested Array
@@ -36,7 +37,7 @@ function App() {
         <Route exact path="/" element={<Myhome />} />
         <Route exact path="/book" element={<Mybook />} />
         <Route exact path="/message" element={<Mymessage />} />
-        <Route exact path="/filewrite" element={<Myhome />} />
+        <Route exact path="/emp" element={<Myemp />} />
         <Route exact path="/nestedarray" element={<Myhome />} />
       </Routes>
     </HashRouter>

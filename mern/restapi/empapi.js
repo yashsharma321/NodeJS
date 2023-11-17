@@ -14,15 +14,21 @@ router.get("/", async (req, res) => {
 
 // to add new employee
 router.post("/", async (req, res) => {
-  let newemp = new Employee({
-    empname: req.body.empname,
-    dept: req.body.dept,
-    city: req.body.city,
-    salary: req.body.salary,
-  });
+  try {
+    // Create a new employee object with the provided data
+    let newemp = new Employee({
+      empname: req.body.empname,
+      dept: req.body.dept,
+      city: req.body.city,
+      salary: req.body.salary,
+    });
 
-  let empinfo = await newemp.save();
-  res.status(201).json(empinfo);
+    let empinfo = await newemp.save();
+    res.status(201).json(empinfo);
+  } catch (error) {
+    // Handle any errors that occur during the creation process
+    res.status(500).json({ error: "Failed to add new employee" });
+  }s
 });
 
 // to update the record
@@ -48,9 +54,21 @@ router.patch("/", async (req, res) => {
 
 // to delete the  record
 router.delete("/:id", async (req, res) => {
-  let myemp = await Employee.findById(req.params.id);
-  //  let myemp = await Employee.findById(req.body.id);
-  myemp.deleteOne();
-  let msg = { info: "Record Deleted Successfully !" };
-  res.status(201).json(msg);
+  try {
+    // Find the employee by ID
+    let myemp = await Employee.findById(req.params.id);
+
+    // If the employee exists, delete it
+    if (myemp) {
+      await myemp.deleteOne(); // Wait for the deletion to complete
+      let msg = { info: "Record Deleted Successfully !" };
+      return res.status(201).json(msg);
+    } else {
+      // If the employee doesn't exist, return an error message
+      return res.status(404).json({ error: "Employee not found" });
+    }
+  } catch (err) {
+    // Handle any errors that occur during the deletion process
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
 });

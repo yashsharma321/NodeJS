@@ -4,9 +4,7 @@ const Mymessage = () => {
   let [allmessage, updateMessage] = useState([]);
 
   const getMessage = () => {
-    fetch(
-      "https://zany-space-chainsaw-5rgjvqqxpgqc47v-1234.app.github.dev/messagelist"
-    )
+    fetch("http://localhost:1234/messagelist")
       .then((response) => response.text())
       .then((messageData) => {
         if (messageData.length > 0) {
@@ -26,8 +24,7 @@ const Mymessage = () => {
   let [newmsg, pickMessage] = useState("");
 
   const save = () => {
-    let url =
-      "https://zany-space-chainsaw-5rgjvqqxpgqc47v-1234.app.github.dev/newmessage";
+    let url = "http://localhost:1234/newmessage";
     let postData = {
       headers: { "Content-Type": "application/json" },
       method: "POST",
@@ -44,8 +41,7 @@ const Mymessage = () => {
   };
 
   const delmsg = () => {
-    let url =
-      "https://zany-space-chainsaw-5rgjvqqxpgqc47v-1234.app.github.dev/clearall";
+    let url = "http://localhost:1234/clearall";
     fetch(url)
       .then((response) => response.text())
       .then((msg) => {
@@ -62,8 +58,7 @@ const Mymessage = () => {
           <textarea
             className="form-control"
             onChange={(obj) => pickMessage(obj.target.value)}
-            value={newmsg}
-          ></textarea>
+            value={newmsg}></textarea>
           <button className="btn btn-primary m-4" onClick={save}>
             Send Message
           </button>

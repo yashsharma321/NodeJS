@@ -724,3 +724,6 @@
          that JSON body and url will give to the fronted. 
          "Whenver you are sending data, you send this one and you will receive this one."
          http://localhost:5555/emplist this url on the browser will show the output.
+
+# CLASS 8
+    Created Frontend emp.js with save delete functions

@@ -8,9 +8,7 @@ const Myhome = () => {
   });
 
   const getData = () => {
-    fetch(
-      "https://zany-space-chainsaw-5rgjvqqxpgqc47v-1234.app.github.dev/mydata"
-    )
+    fetch("http://localhost:1234/mydata")
       .then((response) => response.json())
       .then((dataArray) => {
         updateData(dataArray);
