@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 const Myorder = () => {
   let [allproduct, updateProduct] = useState([]);
@@ -15,6 +14,43 @@ const Myorder = () => {
     getproduct();
   }, [1]);
 
+  let [fullname, pickName] = useState("");
+  let [mobile, pickMobile] = useState("");
+  let [email, pickEmail] = useState("");
+  let [city, pickCity] = useState("");
+  let [address, pickAddress] = useState("");
+
+  const save = () => {
+    let url = "http://localhost:5555/order";
+    let orderdata = {
+      name: fullname,
+      mobile: mobile,
+      email: email,
+      city: city,
+      address: address,
+      userid: localStorage.getItem("adminid"),
+      itemlist: allproduct,
+    };
+
+    let postdata = {
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+      body: JSON.stringify(orderdata),
+    };
+
+    fetch(url, postdata)
+      .then((response) => response.json())
+      .then((serverReply) => {
+        alert(serverReply.msg);
+        getproduct(); // to refresh the cart list
+        pickName("");
+        pickMobile("");
+        pickEmail("");
+        pickCity("");
+        pickAddress("");
+      });
+  };
+
   return (
     <div className="container mt-4">
       <div className="row mt-4">
@@ -23,26 +59,51 @@ const Myorder = () => {
           <div className="row mb-3 mt-4">
             <div className="col-lg-6">
               <label>Full Name</label>
-              <input type="text" className="form-control" />
+              <input
+                type="text"
+                className="form-control"
+                onChange={(obj) => pickName(obj.target.value)}
+                value={fullname}
+              />
             </div>
             <div className="col-lg-6 mb-4">
               <label>Mobile No</label>
-              <input type="number" className="form-control" />
+              <input
+                type="number"
+                className="form-control"
+                onChange={(obj) => pickMobile(obj.target.value)}
+                value={mobile}
+              />
             </div>
             <div className="col-lg-6 mb-4">
               <label>e-Mail Id</label>
-              <input type="email" className="form-control" />
+              <input
+                type="email"
+                className="form-control"
+                onChange={(obj) => pickEmail(obj.target.value)}
+                value={email}
+              />
             </div>
             <div className="col-lg-6 mb-4">
               <label>City Name</label>
-              <input type="text" className="form-control" />
+              <input
+                type="text"
+                className="form-control"
+                onChange={(obj) => pickCity(obj.target.value)}
+                value={city}
+              />
             </div>
             <div className="col-lg-12 mb-4">
               <label>Delivery Address</label>
-              <textarea className="form-control"></textarea>
+              <textarea
+                className="form-control"
+                onChange={(obj) => pickAddress(obj.target.value)}
+                value={address}></textarea>
             </div>
             <div className="text-center">
-              <button className="btn btn-primary btn-lg">Place Order</button>
+              <button className="btn btn-primary" onClick={save}>
+                Place My Order
+              </button>
             </div>
           </div>
         </div>

@@ -91,3 +91,18 @@ Content-Type: application/json
  	"id": "6558bb9a7b92fc3ba7eb2b58"
 }
 
+
+###
+POST http://localhost:5555/order
+Content-Type: application/json
+
+{
+	"name":"Ganesh",
+  "city": "Kailash",
+  "mobile": "989879879",
+  "email": "ganesh@shiv.com",
+  "address": "Himalaya Mountain, India",
+  "itemlist": {"test": "Hari Bol"},
+  "userid": "1234567"
+}
+

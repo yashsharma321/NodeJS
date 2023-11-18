@@ -794,3 +794,7 @@
 #CLASS 15
     Update Cart Items.
     Created Order Page
+
+#CLASS 16
+    Order Page Schema and API
+    Colleted user details and sent to order's table.
