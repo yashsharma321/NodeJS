@@ -8,10 +8,6 @@ import NewProduct from "./newproduct";
 import Details from "./details";
 
 function App() {
-  const logout = () => {
-    localStorage.clear();
-    window.location.reload();
-  };
   return (
     <HashRouter>
       <section className="bg-light p-3">
@@ -37,7 +33,7 @@ function App() {
                 Product
               </Link>
               <Link onClick={logout} className="me-4">
-                Logout
+                {localStorage.getItem("adminname")} - Logout
               </Link>
             </div>
           </div>
@@ -57,3 +53,8 @@ function App() {
 }
 
 export default App;
+
+const logout = () => {
+  localStorage.clear();
+  window.location.reload();
+};

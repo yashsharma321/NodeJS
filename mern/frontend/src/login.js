@@ -47,8 +47,8 @@ const Mylogin = () => {
       .then((response) => response.json())
       .then((userinfo) => {
         if (userinfo.length > 0) {
-          localStorage.setItem("adminid", userinfo._id);
-          localStorage.setItem("adminname", userinfo.username);
+          localStorage.setItem("adminid", userinfo[0]._id); // response is comming in array format
+          localStorage.setItem("adminname", userinfo[0].username);
           window.location.reload();
         } else {
           updateMessage("Invalid or Not Exists !");
