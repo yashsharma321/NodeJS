@@ -790,3 +790,7 @@
 
 #CLASS 14
     Delete Cart Items, Increase / Decrease quantity.
+
+#CLASS 15
+    Update Cart Items.
+    Created Order Page

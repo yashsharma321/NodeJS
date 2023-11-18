@@ -7,6 +7,7 @@ import Myproduct from "./product";
 import NewProduct from "./newproduct";
 import Details from "./details";
 import Mycart from "./cart";
+import Myorder from "./order";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
         <Route exact path="/newproduct" element={<NewProduct />} />
         <Route exact path="/details/:pid" element={<Details />} />
         <Route exact path="/cart" element={<Mycart />} />
+        <Route exact path="/order" element={<Myorder />} />
       </Routes>
     </HashRouter>
   );

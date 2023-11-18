@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Mycart = () => {
   let [allproduct, updateProduct] = useState([]);
@@ -24,6 +25,34 @@ const Mycart = () => {
     }
   };
 
+  const updateQty = (qty, id, sts) => {
+    let newQty = 0;
+    if (sts === "P") {
+      newQty = parseInt(qty, 10) + 1;
+    } else {
+      newQty = parseInt(qty, 10) - 1;
+    }
+    if (newQty == 0) {
+      deleteItem(id, "Item");
+      return;
+    }
+
+    let updatedata = { id: id, qty: newQty };
+
+    let postdata = {
+      headers: { "Content-Type": "application/json" },
+      method: "PUT",
+      body: JSON.stringify(updatedata),
+    };
+
+    fetch("http://localhost:5555/cart/", postdata)
+      .then((response) => response.json())
+      .then((serverRes) => {
+        alert(serverRes.msg);
+        getproduct();
+      });
+  };
+
   useEffect(() => {
     getproduct();
   }, [1]);
@@ -43,9 +72,27 @@ const Mycart = () => {
                   width="100%"
                 />
                 <p className="input-group my-3">
-                  <button className="btn btn-primary btn-sm"> + </button>
+                  <button
+                    className="btn btn-primary btn-sm"
+                    onClick={updateQty.bind(
+                      this,
+                      product.qty,
+                      product._id,
+                      "P"
+                    )}>
+                    +
+                  </button>
                   <input type="text" readOnly value={product.qty} />
-                  <button className="btn btn-warning btn-sm"> - </button>
+                  <button
+                    className="btn btn-warning btn-sm"
+                    onClick={updateQty.bind(
+                      this,
+                      product.qty,
+                      product._id,
+                      "M"
+                    )}>
+                    -
+                  </button>
                 </p>
                 <p className="text-warning"> Rate Rs. {product.price}</p>
                 <p className="text-danger">
@@ -62,6 +109,11 @@ const Mycart = () => {
             </div>
           );
         })}
+        <p className="col-lg-12 text-center mt-3">
+          <Link to="/order" className="btn btn-warning btn-lg">
+            Place Order
+          </Link>
+        </p>
       </div>
     </div>
   );

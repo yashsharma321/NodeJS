@@ -47,3 +47,15 @@ router.delete("/:id", async (req, res) => {
     return res.status(500).json({ msg: "Internal Server Error" });
   }
 });
+
+// to update an item
+router.put("/", async (req, res) => {
+  try {
+    let product = await Cart.findById(req.body.id);
+    product.qty = req.body.qty;
+    await product.save();
+    res.status(200).json({ msg: "Quantity Updated" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update item in your cart." });
+  }
+});

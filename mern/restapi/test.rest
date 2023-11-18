@@ -80,3 +80,14 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:5555/cart/6558b0c28eee671ac97e2bde
+
+
+###
+PUT http://localhost:5555/cart
+Content-Type: application/json
+
+{
+  "qty": "4",
+ 	"id": "6558bb9a7b92fc3ba7eb2b58"
+}
+
