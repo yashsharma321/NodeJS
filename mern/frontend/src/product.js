@@ -68,15 +68,19 @@ const Myproduct = () => {
           return (
             <div className="col-lg-3 mb-4" key={index}>
               <div className="p-4 border rounded">
-                <h4 className="text-primary"> {product.pname} </h4>
-                <img
-                  src={product.photo}
-                  className="rounded"
-                  height="160"
-                  width="100%"
-                />
-                <p className="text-info"> inStock : {product.qty}</p>
-                <p className="text-warning"> Rate Rs. {product.price}</p>
+                <Link
+                  to={`/details/${product._id}`}
+                  className="text-decoration-none">
+                  <h4 className="text-primary"> {product.pname} </h4>
+                  <img
+                    src={product.photo}
+                    className="rounded"
+                    height="160"
+                    width="100%"
+                  />
+                  <p className="text-info"> inStock : {product.qty}</p>
+                  <p className="text-warning"> Rate Rs. {product.price}</p>
+                </Link>
               </div>
             </div>
           );

@@ -778,3 +778,9 @@
         }
     });
     PUT http://localhost:5555/productlist/65572fc185160e81dd058455
+
+#CLASS 12
+    Product details page added. useParams from react-router-dom is used to fetch details from url.
+    We use the pid to send request via API to fetch particular product details.
+    const {pid} = useParams();
+    Logout button added.

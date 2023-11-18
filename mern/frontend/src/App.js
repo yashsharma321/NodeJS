@@ -5,8 +5,13 @@ import Mymessage from "./message";
 import Myemp from "./emp";
 import Myproduct from "./product";
 import NewProduct from "./newproduct";
+import Details from "./details";
 
 function App() {
+  const logout = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
   return (
     <HashRouter>
       <section className="bg-light p-3">
@@ -31,6 +36,9 @@ function App() {
               <Link to="/product" className="me-4">
                 Product
               </Link>
+              <Link onClick={logout} className="me-4">
+                Logout
+              </Link>
             </div>
           </div>
         </div>
@@ -42,6 +50,7 @@ function App() {
         <Route exact path="/emp" element={<Myemp />} />
         <Route exact path="/product" element={<Myproduct />} />
         <Route exact path="/newproduct" element={<NewProduct />} />
+        <Route exact path="/details/:pid" element={<Details />} />
       </Routes>
     </HashRouter>
   );
