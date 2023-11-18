@@ -784,3 +784,6 @@
     We use the pid to send request via API to fetch particular product details.
     const {pid} = useParams();
     Logout button added.
+
+#CLASS 13
+    cartschema, cartapi, and Cart page created.

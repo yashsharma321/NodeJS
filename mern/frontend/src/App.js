@@ -6,6 +6,7 @@ import Myemp from "./emp";
 import Myproduct from "./product";
 import NewProduct from "./newproduct";
 import Details from "./details";
+import Mycart from "./cart";
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
               <Link to="/product" className="me-4">
                 Product
               </Link>
+              <Link to="/cart" className="me-4">
+                Cart Items
+              </Link>
               <Link onClick={logout} className="me-4">
                 {localStorage.getItem("adminname")} - Logout
               </Link>
@@ -47,6 +51,7 @@ function App() {
         <Route exact path="/product" element={<Myproduct />} />
         <Route exact path="/newproduct" element={<NewProduct />} />
         <Route exact path="/details/:pid" element={<Details />} />
+        <Route exact path="/cart" element={<Mycart />} />
       </Routes>
     </HashRouter>
   );

@@ -59,3 +59,22 @@ GET http://localhost:5555/productlist/Banana
 
 ###
 PUT http://localhost:5555/productlist/65572fc185160e81dd058455
+
+
+###
+GET http://localhost:5555/cart
+
+
+###
+POST http://localhost:5555/cart
+Content-Type: application/json
+
+{
+  "pname": "pname",
+  "qty": "re",
+  "price":" ce",
+  "photo": "oto",
+  "userid": "rrid"
+}
+
+

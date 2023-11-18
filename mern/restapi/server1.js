@@ -24,4 +24,7 @@ app.use("/productlist", product); // http://localhost:5555/productlist get post 
 const register = require("./registerapi");
 app.use("/account", register); // http://localhost:5555/account get post patch delete
 
+const cart = require("./cartapi");
+app.use("/cart", cart); // http://localhost:5555/cart get post patch delete
+
 app.listen(5555, () => console.log("Server has started..."));

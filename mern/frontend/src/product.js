@@ -25,6 +25,28 @@ const Myproduct = () => {
       });
   };
 
+  const addtocart = (product) => {
+    let item = {
+      pname: product.pname,
+      price: product.price,
+      qty: 1,
+      photo: product.photo,
+      userid: localStorage.getItem("adminid"),
+    };
+    let url = "http://localhost:5555/cart";
+    let postdata = {
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+      body: JSON.stringify(item),
+    };
+
+    fetch(url, postdata)
+      .then((response) => response.json())
+      .then((message) => {
+        alert(message.msg);
+      });
+  };
+
   //pagination start
   const PER_PAGE = 4;
   const [currentPage, setCurrentPage] = useState(0);
@@ -33,6 +55,7 @@ const Myproduct = () => {
   }
   const offset = currentPage * PER_PAGE;
   const pageCount = Math.ceil(allproduct.length / PER_PAGE);
+  //pagination end
 
   return (
     <div className="container mt-4">
@@ -78,9 +101,14 @@ const Myproduct = () => {
                     height="160"
                     width="100%"
                   />
-                  <p className="text-info"> inStock : {product.qty}</p>
-                  <p className="text-warning"> Rate Rs. {product.price}</p>
                 </Link>
+                <p className="text-info"> inStock : {product.qty}</p>
+                <p className="text-warning"> Rate Rs. {product.price}</p>
+                <button
+                  className="btn btn-info btn-sm"
+                  onClick={addtocart.bind(this, product)}>
+                  Add to Cart
+                </button>
               </div>
             </div>
           );
