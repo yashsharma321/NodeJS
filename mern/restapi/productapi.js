@@ -13,9 +13,20 @@ router.get("/", async (req, res) => {
   }
 });
 
+//product details
+
+router.put("/:id", async (req, res) => {
+  try {
+    let allproduct = await Product.findById(req.params.id);
+    res.status(200).json(allproduct); // Respond with the retrieved data
+  } catch (error) {
+    res.status(500).json({ error: "Failed to retrieve product data" });
+  }
+});
+
 router.get("/:pname", async (req, res) => {
   try {
-    let allproduct = await Product.find({pname : req.params.pname});
+    let allproduct = await Product.find({ pname: req.params.pname });
     res.status(200).json(allproduct); // Respond with the retrieved data
   } catch (error) {
     res.status(500).json({ error: "Failed to retrieve product data" });

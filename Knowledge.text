@@ -742,3 +742,39 @@
     
 #CLASS 10
     Pagination and search functionality added. 
+
+#CLASS 11
+    router.get("/:id", async (req, res) => {
+        try {
+            let allproduct = await Product.findOne(req.params.id);
+            res.status(200).json(allproduct); // Respond with the retrieved data
+        } catch (error) {
+            res.status(500).json({ error: "Failed to retrieve product data" });
+        }
+    });
+
+    router.get("/:pname", async (req, res) => {
+        try {
+            let allproduct = await Product.find({ pname: req.params.pname });
+            res.status(200).json(allproduct); // Respond with the retrieved data
+        } catch (error) {
+            res.status(500).json({ error: "Failed to retrieve product data" });
+        }
+    });
+
+    Here, because two get is used with same structure, so both the operations were failing.
+    Based on GET only one operation will happen.
+    while doing api testing using ###
+        GET http://localhost:5555/productlist/Banana
+        GET http://localhost:5555/productlist/65570ecb10b6b0d466927b8d
+    If we remove anyone of the get fxn, other would work, together none.
+    So, In the fetch by ID part instead of GET we gonna use PUT.
+    router.put("/:id", async (req, res) => {
+        try {
+            let allproduct = await Product.findById(req.params.id);
+            res.status(200).json(allproduct); // Respond with the retrieved data
+        } catch (error) {
+            res.status(500).json({ error: "Failed to retrieve product data" });
+        }
+    });
+    PUT http://localhost:5555/productlist/65572fc185160e81dd058455
