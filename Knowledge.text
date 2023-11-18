@@ -787,3 +787,6 @@
 
 #CLASS 13
     cartschema, cartapi, and Cart page created.
+
+#CLASS 14
+    Delete Cart Items, Increase / Decrease quantity.

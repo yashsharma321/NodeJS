@@ -10,6 +10,20 @@ const Mycart = () => {
       });
   };
 
+  const deleteItem = (pid, name) => {
+    try {
+      let postdata = { method: "DELETE" };
+      fetch("http://localhost:5555/cart/" + pid, postdata)
+        .then((response) => response.json())
+        .then((serverRes) => {
+          alert(name + " from Cart " + serverRes.msg);
+          getproduct();
+        });
+    } catch (err) {
+      alert("Failed to delete");
+    }
+  };
+
   useEffect(() => {
     getproduct();
   }, [1]);
@@ -38,7 +52,11 @@ const Mycart = () => {
                   Total Rs. {product.price * product.qty}
                 </p>
                 <p className="text-end mt-3">
-                  <button className="text-danger"> Delete </button>
+                  <button
+                    className="text-danger"
+                    onClick={deleteItem.bind(this, product._id, product.pname)}>
+                    Delete
+                  </button>
                 </p>
               </div>
             </div>

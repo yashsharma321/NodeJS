@@ -78,3 +78,5 @@ Content-Type: application/json
 }
 
 
+###
+DELETE http://localhost:5555/cart/6558b0c28eee671ac97e2bde

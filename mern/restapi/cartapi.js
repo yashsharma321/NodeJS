@@ -32,3 +32,18 @@ router.post("/", async (req, res) => {
     res.status(500).json({ error: "Failed to add item in the cart." });
   }
 });
+
+router.delete("/:id", async (req, res) => {
+  try {
+    let myproduct = await Cart.findById(req.params.id);
+    if (myproduct) {
+      await myproduct.deleteOne(); // Wait for the deletion to complete
+      let msg = { msg: "Record Deleted Successfully !" };
+      return res.status(200).json(msg);
+    } else {
+      return res.status(404).json({ msg: "Product not found" });
+    }
+  } catch (err) {
+    return res.status(500).json({ msg: "Internal Server Error" });
+  }
+});
