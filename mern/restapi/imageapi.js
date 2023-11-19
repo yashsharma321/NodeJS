@@ -43,4 +43,9 @@ router.route("/add").post(upload.single("photo"), (req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+router.route("/").get(async (req, res) => {
+  let images = await Image.find();
+  res.status(200).json(images);
+}); // immediately we can test http://localhost:5555/imagelist
+
 module.exports = router;

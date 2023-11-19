@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
 
+// Serve static images
+app.use("/images", express.static("images")); // Make sure this line comes before using your image router
+
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://127.0.0.1:27017/company");
 const db = mongoose.connection; // to connect with database
