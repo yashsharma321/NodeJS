@@ -30,4 +30,7 @@ app.use("/cart", cart); // http://localhost:5555/cart get post patch delete
 const order = require("./orderapi");
 app.use("/order", order); // http://localhost:5555/order get post patch delete
 
+const image = require("./imageapi");
+app.use("/imagelist", image); // http://localhost:5555/imagelist get post patch delete
+
 app.listen(5555, () => console.log("Server has started..."));

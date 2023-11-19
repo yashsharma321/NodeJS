@@ -1,0 +1,19 @@
+const mongoose = require("mongoose");
+
+const imageStructure = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+
+  photo: {
+    type: String,
+  },
+
+  birthdate: {
+    type: String,
+  },
+});
+
+module.exports = mongoose.model("Image", imageStructure);

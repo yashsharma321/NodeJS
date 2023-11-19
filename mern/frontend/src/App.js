@@ -9,6 +9,7 @@ import Details from "./details";
 import Mycart from "./cart";
 import Myorder from "./order";
 import Orderlist from "./orderlist";
+import ImageUpload from "./mypic";
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
             <div className="col-lg-9 text-end">
               <Link to="/" className="me-4">
                 Home
+              </Link>
+              <Link to="/image" className="me-4">
+                Image
               </Link>
               <Link to="/book" className="me-4">
                 Books
@@ -59,6 +63,7 @@ function App() {
         <Route exact path="/cart" element={<Mycart />} />
         <Route exact path="/order" element={<Myorder />} />
         <Route exact path="/orderlist" element={<Orderlist />} />
+        <Route exact path="/image" element={<ImageUpload />} />
       </Routes>
     </HashRouter>
   );
